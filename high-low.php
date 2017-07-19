@@ -1,8 +1,24 @@
 <?php
 
-$randomNumber = rand(1, 100);
+var_dump($argc);
 
-fwrite(STDOUT, "pick a numeric number between 1 and 100 \n");
+if ($argc < 3) {
+	echo "Too Few!\n";
+	echo "Please Pass 2 arguments that are numeric numbers for High Low Game \n";
+	die;
+} else if ($argc > 3) {
+	echo "too many!\n";
+	echo "Please Pass 2 arguments that are numeric numbers for High Low Game \n";
+	die;
+} else if (!is_numeric($argv[1]) || !is_numeric($argv[2])){
+	echo "Please Pass 2 arguments that are numeric numbers for High Low Game \n";
+	die;
+}
+
+
+$randomNumber = rand($argv[1], $argv[2]);
+
+fwrite(STDOUT, "pick a numeric number between $argv[1] and $argv[2] \n");
 
 fwrite(STDOUT, "GUESS? \n");
 $pickedNumber = trim(fgets(STDIN));
